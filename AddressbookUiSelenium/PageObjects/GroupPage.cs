@@ -24,8 +24,8 @@ namespace AddressbookUiSelenium.PageObjects
         
         public List<Group> getGroups()
         {
-            return groupCheckboxes.Select(@group => new Group().withName(@group.Text)
-                    .withId(Convert.ToInt32(@group.FindElement(By.TagName("input")).GetAttribute("value"))))
+            return groupCheckboxes.Select(g => new Group().withName(g.Text)
+                    .withId(Convert.ToInt32(g.FindElement(By.TagName("input")).GetAttribute("value"))))
                 .ToList();
         }
 
