@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using OpenQA.Selenium;
 
 namespace AddressbookUiSelenium.Models
 {
@@ -23,11 +21,7 @@ namespace AddressbookUiSelenium.Models
             set => id = value;
         }
 
-        public string GroupFooter
-        {
-            get => groupFooter;
-            set => groupFooter = value;
-        }
+        public string GroupFooter => groupFooter;
 
 
         public string GroupName

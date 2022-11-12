@@ -11,18 +11,16 @@ namespace AddressbookUiSelenium
         [Test]
         public void TestGroupCreate()
         {
-            Driver.Navigate().GoToUrl(Url);
             var group = new Group().withName("New group").withHeader("New Header").withFooter("New footer");
-            var loginPage = new LoginPage(Driver);
-            var mainPage = loginPage.Login(Login, Password);
-            var groupPage = mainPage.GoToGroupPage();
-            var before = groupPage.getGroups();
-            var groupCreatePage = groupPage.GoToGroupCreatePage();
+
+            app.goTo().groupPage();
             
-            groupCreatePage.createGroup(group);
-            Assert.True(groupPage.GroupsHeader.Displayed);
+            var before = app.group().getGroups();
             
-            var after = groupPage.getGroups();
+            app.group().createNew(group);
+            app.goTo().groupPage();
+
+            var after = app.group().getGroups();
             
             before.Add(group
                 .withFooter(null)
@@ -32,7 +30,7 @@ namespace AddressbookUiSelenium
             
             var beforeSorted = before.OrderBy(g => g.Id).ToList();
             var afterSorted = after.OrderBy(g => g.Id).ToList();
-
+            
             Assert.AreEqual(beforeSorted,afterSorted);
         }
         

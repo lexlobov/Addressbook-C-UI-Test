@@ -1,28 +1,23 @@
-﻿using AddressbookUiSelenium.PageObjects;
+﻿using AddressbookUiSelenium.AppManagement;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
 namespace AddressbookUiSelenium
 {
     public class TestBase
     {
-        protected IWebDriver Driver;
-        protected const string Url = "http://localhost/addressbook/";
-        protected const string Login = "admin";
-        protected const string Password = "secret";
+        protected AppManager app = new AppManager();
 
         [SetUp]
         public void SetUp()
         {
-            Driver = new ChromeDriver();
+            app.init();
         }
         
 
         [TearDown]
         public void TearDown()
         {
-            Driver.Quit();
+            app.stop();
         }
     }
 }

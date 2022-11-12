@@ -1,4 +1,3 @@
-using AddressbookUiSelenium.PageObjects;
 using NUnit.Framework;
 
 namespace AddressbookUiSelenium
@@ -7,12 +6,9 @@ namespace AddressbookUiSelenium
     {
         
         [Test]
-        public void Test1()
+        public void TestLogin()
         {
-            Driver.Navigate().GoToUrl(Url);
-            LoginPage loginPage = new LoginPage(Driver);
-            MainPage mainPage = loginPage.Login(Login, Password);
-            Assert.True(mainPage.HomeLink.Displayed);
+            Assert.True(app.session().isLoggedIn());
         }
 
 

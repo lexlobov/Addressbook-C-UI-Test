@@ -8,26 +8,12 @@ namespace AddressbookUiSelenium.PageObjects
 {
     public class GroupPage : BasePage
     {
-        public GroupPage(IWebDriver driver) : base(driver)
-        {
-        }
+        public By NewBtn => By.Name("new");
+        public By groupCheckboxes => By.CssSelector("span.group");
+        public By GroupsHeader => By.XPath("//h1[text()='Groups']");
 
-        public IWebElement NewBtn => Driver.FindElement(By.Name("new"));
-        public IEnumerable<IWebElement> groupCheckboxes => Driver.FindElements(By.CssSelector("span.group"));
-        public IWebElement GroupsHeader => Driver.FindElement(By.XPath("//h1[text()='Groups']"));
-
-        public GroupCreatePage GoToGroupCreatePage()
-        {
-            NewBtn.Click();
-            return new GroupCreatePage(Driver);
-        }
         
-        public List<Group> getGroups()
-        {
-            return groupCheckboxes.Select(g => new Group().withName(g.Text)
-                    .withId(Convert.ToInt32(g.FindElement(By.TagName("input")).GetAttribute("value"))))
-                .ToList();
-        }
+
 
     }
 }
