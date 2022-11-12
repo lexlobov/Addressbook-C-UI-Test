@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace AddressbookUiSelenium
 {
+    [SetUpFixture]
     public class TestBase
     {
         protected AppManager app = new AppManager();
