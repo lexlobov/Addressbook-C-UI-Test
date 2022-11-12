@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using AddressbookUiSelenium.Models;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace AddressbookUiSelenium.AppManagement
@@ -46,6 +47,16 @@ namespace AddressbookUiSelenium.AppManagement
         
         public void stop() {
             driver.Quit();
+        }
+        
+        public void ensureGroupPreconditions()
+        {
+            goTo().groupPage();
+            var newGroup = new Group().withName("New group").withHeader("New Header").withFooter("New footer");
+            if (!(group().getGroups().Count>0))
+            {
+                group().createNew(newGroup);
+            }
         }
         
     }
