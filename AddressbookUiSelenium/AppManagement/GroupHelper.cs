@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using AddressbookUiSelenium.Models;
 using AddressbookUiSelenium.PageObjects;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace AddressbookUiSelenium.AppManagement
@@ -24,10 +25,34 @@ namespace AddressbookUiSelenium.AppManagement
         public void createNew(Group group)
         {
             click(gp.NewBtn);
-            type(gcp.NameField, group.GroupName);
-            type(gcp.HeaderField, group.GroupHeader);
-            type(gcp.FooterField, group.GroupFooter);
+            fillGroupForm(group);
             click(gcp.SubmitBtn);
+        }
+
+        private void fillGroupForm(Group group)
+        {
+            clearEntryField(gcp.NameField);
+            type(gcp.NameField, @group.GroupName);
+            clearEntryField(gcp.HeaderField);
+            type(gcp.HeaderField, @group.GroupHeader);
+            clearEntryField(gcp.FooterField);
+            type(gcp.FooterField, @group.GroupFooter);
+        }
+
+        public Group randomGroupFromList()
+        {
+            var rand = new Random();
+            List<Group> groups = getGroups();
+            var modifiedGroup = groups[rand.Next(groups.Count)];
+            return modifiedGroup;
+        }
+
+        public void modify(Group modifiedGroupInList, Group newModifiedGroup)
+        {
+            click(By.CssSelector("input[value='" + modifiedGroupInList.Id + "']"));
+            click(By.Name("edit"));
+            fillGroupForm(newModifiedGroup);
+            click(gcp.UpdateBtn);
         }
     }
 }

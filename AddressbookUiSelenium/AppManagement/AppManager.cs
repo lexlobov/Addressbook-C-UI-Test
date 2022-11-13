@@ -53,7 +53,7 @@ namespace AddressbookUiSelenium.AppManagement
         {
             goTo().groupPage();
             var newGroup = new Group().withName("New group").withHeader("New Header").withFooter("New footer");
-            if (!(group().getGroups().Count>0))
+            if (group().getGroups().Count<1)
             {
                 group().createNew(newGroup);
             }

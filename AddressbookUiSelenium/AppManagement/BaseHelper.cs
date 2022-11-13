@@ -46,5 +46,10 @@ namespace AddressbookUiSelenium.AppManagement
             
         }
 
+        protected void clearEntryField(By locator)
+        {
+            find(locator).Clear();
+        }
+
     }
 }

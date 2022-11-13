@@ -8,6 +8,7 @@ namespace AddressbookUiSelenium.PageObjects
         public By HeaderField => By.Name("group_header");
         public By FooterField => By.Name("group_footer");
         public By SubmitBtn => By.Name("submit");
-        
+        public By UpdateBtn => By.Name("update");
+
     }
 }
